@@ -5,14 +5,30 @@ import streamlit as st
 def load_news(filename):
     """Baca file news_data.csv ke list of dict"""
     # TODO: buka file CSV (filename) dan baca dengan csv.DictReader
+    with open(filename, 'r', newline='') as datafile:
+        reader = csv.DictReader(datafile)
+        # print(reader)
+        list_news_data = []
+        for row in reader:
+            list_news_data.append(row)
+            # print(row['tahun'])
+            # print(row['pria'])
+            # print(row['wanita'])
+            # print()
     # kembalikan hasilnya dalam bentuk list
     pass
 
 def load_comments(filename):
     """Baca file comment_news.csv ke list of dict"""
     # TODO: sama seperti load_news tapi untuk file komentar
+    with open(filename, 'r', newline='') as datafile:
+        reader = csv.DictReader(datafile)
+        comment_news_data = []
+        for row in reader:
+            comment_news_data.append(row)
+    # st.write(comment_news_data)
     pass
-
+# load_comments('comment_news.csv')
 # --- Fungsi untuk memproses data ---
 def process_data(news_list, comments_list):
     """
@@ -20,10 +36,19 @@ def process_data(news_list, comments_list):
     hitung jumlah komentar & rata-rata rating.
     Hasilnya list of dict.
     """
-    # TODO: Buat dictionary untuk kumpulkan komentar per idBerita
     comments_per_news = {}
-
+    # TODO: Buat dictionary untuk kumpulkan komentar per idBerita
+    for row in comments_list:
+        idBerita = row['idBerita']
+        komentar = row['idKomentar']
+        rating = row['Rating']
+        comments_per_news.append({
+            idBerita: komentar, 
+        })
+        test = idBerita
+    
     # TODO: isi comments_per_news dari comments_list
+    for i in comments_list
     # hint: per idBerita simpan ratings (list) dan count
 
     # TODO: Buat list hasil gabungan
